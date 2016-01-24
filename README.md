@@ -12,12 +12,15 @@ Create a store object providing the name of the Reminders list to be created/use
 
 ```store = ReminderStore(namespace, to_json=False, cache=False)```
 
-Use the store object to store, retrieve, list and delete items:
+Using the store API is similar to using a dict:
 
-* Store: ```store['key'] = 'value'```
-* Retrieve: ```store['key']```
-* List: ```for key in store: print store[key]```
-* Delete: ```del store['key']```
+* Store values: ```store['key'] = 'value'```
+* Retrieve values: ```store['key']```
+* Iterate through all items: ```for key in store: print store[key]```
+* Delete items: ```del store['key']```
+* Count of items in store: ```len(store)```
+* Check existence: ```'key' in store```
+* Print all contents: ```print str(store)```
 
 If you want to store structures instead of plain strings, set ```to_json=True```. Store and retrieval operations will then serialize and restore the values to and from JSON.
 
