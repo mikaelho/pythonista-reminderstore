@@ -1,6 +1,7 @@
 # coding: utf-8
 import reminders
 import json
+import uuid
 
 class ReminderStore():
 	
@@ -30,6 +31,16 @@ class ReminderStore():
 			self.items[item.title] = item
 			if self.cached:
 				self.cache[item.title] = item.notes
+				
+	def new_item(self, value = ''):
+		new_id = ''
+		while True:
+			full_string = str(uuid.uuid4())
+			new_id = full_string.split('-')[0]
+			if not new_id in self:
+				break
+		self[new_id] = value
+		return new_id
 				
 	def refresh_cache(self):
 		delta = { "added": set(), "deleted": set(), "changed": set() }
@@ -119,6 +130,9 @@ if __name__ == "__main__":
 '''
 
 	store[id] = content
+	new_id = store.new_item(content)
+	print 'NEW ITEM ID: ' + new_id
+	print
 	print 'ITEMS IN STORE: ' + str(len(store))
 	print
 	print 'PRINT CONTENTS'
@@ -130,6 +144,7 @@ if __name__ == "__main__":
 	for key in store:
 		print 'Key: ' + key + ' - ' + store[key]
 	del store[id]
+	del store[new_id]
 	
 	print
 
