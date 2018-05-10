@@ -55,7 +55,7 @@ class ReminderStore():
 				has_delta = True
 				delta['added'].add(item.title)
 			else:
-				if item.notes <> self.cache[item.title]:
+				if item.notes != self.cache[item.title]:
 					has_delta = True
 					delta['changed'].add(item.title)
 				del self.cache[item.title]
